@@ -1,0 +1,11 @@
+sequenceDiagram
+
+Browser-->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+activate Server
+Server-->Browser: {"message":"note created"}
+deactivate Server
+
+note right of Browser: Browser recieve status code: 201 created
+note right of Browser: Browser execute the event handler to handle the form's submit event
+note right of Browser: Renders the note list on the page and sends the new note to the server
+
