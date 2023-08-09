@@ -1,0 +1,25 @@
+sequenceDiagram
+
+Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+activate Server
+Server-->>Browser: HTML document
+deactivate Server
+
+Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+activate Server
+Server-->>Browser: CSS file (main.css)
+deactivate Server
+
+Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+activate Server
+Server-->>Browser: JavaScript file (spa.js)
+deactivate Server
+
+note right of Browser: Browser starts executing spa.js file and make a request to the Server for data.json file
+
+Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+activate Server
+Server-->>Browser: [ {"content": "Esther","date": "2023-08-08T18:56:27.603Z"}, ... ]
+deactivate Server
+
+note right of Browser: Browser fetches data from data.json
