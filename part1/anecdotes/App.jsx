@@ -1,5 +1,15 @@
 import { useState } from 'react'
 
+const Display = (props) => {
+  return (
+    <>
+    <h1>Anecdote {props.text}</h1>
+    <p>{props.anecdotes[props.index]}</p>
+    <p>has {props.points[props.index]} votes</p>
+    </>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -27,12 +37,17 @@ const App = () => {
     setPoints(copy)
   }
 
+  const maxVote = points.reduce((maxVote, currentNumber, currentIndex, array) => {
+    return currentNumber > array[maxVote] ? currentIndex : maxVote;
+  }, 0);
+  
+
   return (
     <div>
-      {anecdotes[selected]}
-      <p>has {points[selected]} votes</p>
+      <Display text="of the day" index={selected} anecdotes={anecdotes} points={points} />
       <button onClick={handleVoteClick}>vote</button>
       <button onClick={randomNum}>next anecdotes</button>
+      <Display text="with most votes"index={maxVote} anecdotes={anecdotes} points={points} />
     </div>
   )
 }
