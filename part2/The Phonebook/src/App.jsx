@@ -21,13 +21,13 @@ const App = () => {
   }, [])
 
   const deletePersonOf = (id) => {
-    const person = persons.find(n => n.id === id)
+    const person = persons.find(p => p.id === id)
 
     if (window.confirm(`Delete ${person.name} ?`)) {
       personService
       .deleteID(id)
       .then( () => {
-        setPersons(persons.filter(n => n.id !== id))
+        setPersons(persons.filter(p => p.id !== id))
       })
     }
   }
