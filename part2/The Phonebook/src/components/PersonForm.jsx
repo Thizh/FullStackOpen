@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import personService from '../services/persons'
 
-const PersonForm = ({ setPersons, persons }) => {
+const PersonForm = ({ setPersons, persons, setNotification }) => {
 
     const [newName, setNewName] = useState('');
     const [newNumber, setNewNumber] = useState('');
@@ -21,11 +21,12 @@ const PersonForm = ({ setPersons, persons }) => {
             if (numberExists) {
                 alert(newName + " is already added to the phonebook");
             } else {
-                if (window.confirm(`${newName} is already added to phonebook, replace thw old number with new one?`)) {
+                if (window.confirm(`${newName} is already added to phonebook, replace the old number with new one?`)) {
                     personService
                         .update(person.id, { ...person, number: newNumber })
                         .then(updatedPerson => {
                             setPersons(persons.map(p => (p.id === updatedPerson.id ? updatedPerson : p)));
+                            setNotification(`${newName}'s number is changed into ${newNumber}`)
                             setNewName('');
                             setNewNumber('');
                         })
@@ -37,6 +38,7 @@ const PersonForm = ({ setPersons, persons }) => {
                 .create(PersonObject)
                 .then(createdPerson => {
                     setPersons(persons.concat(createdPerson));
+                    setNotification(`Added ${newName}`)
                     setNewName('');
                     setNewNumber('');
                 })

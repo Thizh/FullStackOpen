@@ -3,10 +3,13 @@ import Person from './components/Person'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
 import personService from './services/persons'
+import Notification from './components/Notification'
+import './index.css'
 
 const App = () => {
   const [persons, setPersons] = useState([])
-  const [searchName, setSearchName] = useState('');
+  const [searchName, setSearchName] = useState('')
+  const [notification, setNotification] = useState('')
 
   const filteredPersons = persons.filter((person) =>
     person.name.toLowerCase().includes(searchName.toLowerCase())
@@ -35,9 +38,10 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notification} />
       <Filter searchName={searchName} setSearchName={setSearchName} />
       <h2>add a new</h2>
-      <PersonForm setPersons={setPersons} persons={persons} />
+      <PersonForm setPersons={setPersons} persons={persons} setNotification={setNotification}/>
       <h2>Numbers</h2>
       {filteredPersons.map(person => (
         <Person 
