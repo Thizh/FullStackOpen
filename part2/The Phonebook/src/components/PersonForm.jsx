@@ -26,7 +26,7 @@ const PersonForm = ({ setPersons, persons, setNotification }) => {
                         .update(person.id, { ...person, number: newNumber })
                         .then(updatedPerson => {
                             setPersons(persons.map(p => (p.id === updatedPerson.id ? updatedPerson : p)));
-                            setNotification(`${newName}'s number is changed into ${newNumber}`)
+                            setNotification(`${newName}s number is changed, and it is now ${newNumber}`)
                             setNewName('');
                             setNewNumber('');
                         })
