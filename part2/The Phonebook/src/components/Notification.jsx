@@ -1,10 +1,20 @@
-const Notification = ({ message }) => {
-    if (message === null) {
-      return null
+const Notification = ({ message, isSuccess }) => {
+  let errorStyle = {
+    display: 'none'
+  };
+
+  if (isSuccess === true) {
+    errorStyle = {
+      color: 'green'
     }
+  } else if (isSuccess === false) {
+    errorStyle = {
+      color: 'red'
+    }
+  }
   
     return (
-      <div className='error'>
+      <div className='error' style={errorStyle}>
         {message}
       </div>
     )

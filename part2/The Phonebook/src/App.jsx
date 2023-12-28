@@ -10,6 +10,7 @@ const App = () => {
   const [persons, setPersons] = useState([])
   const [searchName, setSearchName] = useState('')
   const [notification, setNotification] = useState('')
+  const [isSuccess, setIsSuccess] = useState(null)
 
   const filteredPersons = persons.filter((person) =>
     person.name.toLowerCase().includes(searchName.toLowerCase())
@@ -38,10 +39,10 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={notification} />
+      <Notification message={notification} isSuccess={isSuccess} />
       <Filter searchName={searchName} setSearchName={setSearchName} />
       <h2>add a new</h2>
-      <PersonForm setPersons={setPersons} persons={persons} setNotification={setNotification}/>
+      <PersonForm setPersons={setPersons} persons={persons} setNotification={setNotification} setIsSuccess={setIsSuccess} />
       <h2>Numbers</h2>
       {filteredPersons.map(person => (
         <Person 
