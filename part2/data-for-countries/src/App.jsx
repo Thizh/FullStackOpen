@@ -6,6 +6,7 @@ import Filter from './components/Filter';
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [searchCountry, setSearchCountry] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState(null)
 
   useEffect(() => {
     axios
@@ -19,10 +20,12 @@ const App = () => {
     country.name.common.toLowerCase().includes(searchCountry.toLowerCase())
   )
 
+  const showCountry = country => setSelectedCountry(country)
+
   return (
     <div>
       
-      <Filter searchCountry={searchCountry} setSearchCountry={setSearchCountry} />
+      <Filter searchCountry={searchCountry} setSearchCountry={setSearchCountry} setSelectedCountry={setSelectedCountry} />
 
       {filteredCountries.length > 10 ? (
         <p>Too many matches, please make your query more specific.</p>
@@ -33,9 +36,16 @@ const App = () => {
           filteredCountries.map((country) => (
             <li key={country.name.common}>
               {country.name.common}
+              <button onClick={() => showCountry(country)}>show</button>
             </li>
           ))
         )
+      )}
+
+      {selectedCountry && (
+        <>
+        <CountryInfo country={selectedCountry} />
+        </>
       )}
     </div>
   );

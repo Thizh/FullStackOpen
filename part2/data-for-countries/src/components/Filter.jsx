@@ -1,8 +1,9 @@
-const Filter = ({searchCountry, setSearchCountry}) => {
+const Filter = ({ searchCountry, setSearchCountry, setSelectedCountry }) => {
 
     const handleSearchChange = (event) => {
         setSearchCountry(event.target.value)
-      }    
+        setSelectedCountry(null)
+    }
 
     return (
         <div>
