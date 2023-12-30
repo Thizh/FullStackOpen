@@ -43,9 +43,7 @@ const App = () => {
       )}
 
       {selectedCountry && (
-        <>
         <CountryInfo country={selectedCountry} />
-        </>
       )}
     </div>
   );
