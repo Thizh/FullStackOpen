@@ -24,14 +24,14 @@ const App = () => {
 
   return (
     <div>
-      
+
       <Filter searchCountry={searchCountry} setSearchCountry={setSearchCountry} setSelectedCountry={setSelectedCountry} />
 
       {filteredCountries.length > 10 ? (
         <p>Too many matches, please make your query more specific.</p>
       ) : (
         filteredCountries.length === 1 ? (
-            <CountryInfo country={filteredCountries[0]} />
+          <CountryInfo country={filteredCountries[0]} />
         ) : (
           filteredCountries.map((country) => (
             <li key={country.name.common}>
